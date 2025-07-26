@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Edge - Share Your Travel Experience</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+
+    }
+    
+    .page-header {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+    }
+    
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    
+    .content {
+      padding: 30px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: #fc665a;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      color: #777;
+      font-size: 1.1rem;
+    }
+    
+    .form-group {
+      margin-bottom: 25px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #fc665a;
+      box-shadow: 0 0 0 2px rgba(252, 102, 85, 0.2);
+    }
+    
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .rating-container {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+    
+    .rating-container input {
+      display: none;
+    }
+    
+    .rating-container label {
+      cursor: pointer;
+      font-size: 30px;
+      color: #ccc;
+      padding: 5px;
+    }
+    
+    .rating-container label:before {
+      content: '★';
+    }
+    
+    .rating-container input:checked ~ label {
+      color: #fbc43f;
+    }
+    
+    .rating-container label:hover,
+    .rating-container label:hover ~ label {
+      color: #fbc43f;
+    }
+    
+    button {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(252, 102, 85, 0.3);
+      display: block;
+      margin: 0 auto;
+      min-width: 200px;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(252, 102, 85, 0.4);
+    }
+    
+    .error {
+      color: #fc466b;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    
+    .success-message {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(252, 102, 85, 0.3);
+    }
+    
+    .success-message h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+    
+    .success-message p {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+    
+    .home-button {
+      background: white;
+      color: #fc665a;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .home-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .category-tag {
+      background-color: #f0f0f0;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .category-tag.selected {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+      color: white;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 0;
+      }
+      
+      .content {
+        padding: 20px;
+      }
+      
+      button {
+        width: 100%;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <iframe src="navbar.html"  style="height: 80px; width: 100%;position: sticky;top: 0;z-index: 1000;"></iframe>
+  <div class="container">
+    <div class="page-header">
+      <div class="logo">Explore Edge</div>
+      <p>Share Your Travel Adventures</p>
+    </div>
+    
+    <div class="content">
+      <header>
+        <h1>Write Your Travel Review</h1>
+        <p class="subtitle">Help fellow travelers by sharing your experience</p>
+      </header>
+      
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name">
+          <div class="error" id="nameError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email">
+          <div class="error" id="emailError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" name="destination" placeholder="City, Country, or Attraction">
+          <div class="error" id="destinationError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label>Travel Category</label>
+          <div class="categories">
+            <div class="category-tag" data-value="adventure">Adventure</div>
+            <div class="category-tag" data-value="beach">Beach</div>
+            <div class="category-tag" data-value="city">City Break</div>
+            <div class="category-tag" data-value="culture">Cultural</div>
+            <div class="category-tag" data-value="food">Food & Dining</div>
+            <div class="category-tag" data-value="nature">Nature</div>
+          </div>
+          <input type="hidden" id="category" name="category">
+          <div class="error" id="categoryError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label>Rating</label>
+          <div class="rating-container">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5"></label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4"></label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3"></label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2"></label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1"></label>
+          </div>
+          <div class="error" id="ratingError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="reviewTitle">Review Title</label>
+          <input type="text" id="reviewTitle" name="reviewTitle" placeholder="Sum up your experience in a catchy headline">
+          <div class="error" id="reviewTitleError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="reviewText">Your Review</label>
+          <textarea id="reviewText" name="reviewText" placeholder="What did you love about this destination? Any tips for fellow travelers? What made this experience special?"></textarea>
+          <div class="error" id="reviewTextError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="visitDate">Date of Visit</label>
+          <input type="date" id="visitDate" name="visitDate">
+          <div class="error" id="visitDateError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="recommend">Would you recommend this destination?</label>
+          <select id="recommend" name="recommend">
+            <option value="">-- Select an option --</option>
+            <option value="yes">Absolutely!</option>
+            <option value="maybe">For certain travelers</option>
+            <option value="no">Not really</option>
+          </select>
+          <div class="error" id="recommendError"></div>
+        </div>
+        
+        <button type="submit">Submit Review</button><br>
+        
+      </form>
+      
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">✓</div>
+        <h2>Review Submitted Successfully!</h2>
+        <p>Thank you for sharing your travel experience with the Explore Edge community.</p>
+        <p>Your insights will help other travelers discover amazing destinations!</p>
+        <a href="index.html" class="home-button"><button>Return to Home</button></a>
+        
+      </div>    
+    </div>
+   
+
+  </div>
+  <iframe src="element6.html"  style="height: 77vh; width: 100%; bottom: 0;margin-bottom: -200px;"></iframe>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('reviewForm');
+  const successMessage = document.getElementById('successMessage');
+  const categoryTags = document.querySelectorAll('.category-tag');
+  const categoryInput = document.getElementById('category');
+  
+  // Handle category selection
+  categoryTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      categoryTags.forEach(t => t.classList.remove('selected'));
+      this.classList.add('selected');
+      categoryInput.value = this.getAttribute('data-value');
+      document.getElementById('categoryError').textContent = '';
+    });
+  });
+  
+  // Handle home button click
+  document.querySelector('.home-button').addEventListener('click', function(e) {
+    e.preventDefault();
+    form.reset();
+    form.style.display = 'block';
+    successMessage.style.display = 'none';
+    categoryTags.forEach(t => t.classList.remove('selected'));
+  });
+  
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    if (validateForm()) {
+      form.style.display = 'none';
+      successMessage.style.display = 'block';
+      successMessage.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+
+  function validateForm() {
+    document.querySelectorAll('.error').forEach(element => {
+      element.textContent = '';
+    });
+    
+    let isValid = true;
+    
+    // Name validation 
+    const nameRegex = /^[a-zA-Z\s]{2,}$/;
+    const nameInput = document.getElementById('name');
+    if (!nameRegex.test(nameInput.value.trim())) {
+      document.getElementById('nameError').textContent = 'Please enter a valid name ';
+      isValid = false;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailInput = document.getElementById('email');
+    if (!emailRegex.test(emailInput.value.trim())) {
+      document.getElementById('emailError').textContent = 'Please enter a valid email address';
+      isValid = false;
+    }
+    
+    // Destination validation 
+    const destRegex = /.{1,}/;
+    const destInput = document.getElementById('destination');
+    if (!destRegex.test(destInput.value.trim())) {
+      document.getElementById('destinationError').textContent = 'Please enter a destination';
+      isValid = false;
+    }
+    
+    // Category validation
+    if (!categoryInput.value) {
+      document.getElementById('categoryError').textContent = 'Please select a travel category';
+      isValid = false;
+    }
+    
+    // Rating validation
+    if (!document.querySelector('input[name="rating"]:checked')) {
+      document.getElementById('ratingError').textContent = 'Please rate your experience';
+      isValid = false;
+    }
+    
+    // Review title validation 
+    const titleRegex = /.{5,}/;
+    const titleInput = document.getElementById('reviewTitle');
+    if (!titleRegex.test(titleInput.value.trim())) {
+      document.getElementById('reviewTitleError').textContent = 'Please enter a review title (at least 5 characters)';
+      isValid = false;
+    }
+    
+    // Review text validation 
+    const textRegex = /.{20,}/;
+    const textInput = document.getElementById('reviewText');
+    if (!textRegex.test(textInput.value.trim())) {
+      document.getElementById('reviewTextError').textContent = 'Please enter your review (at least 20 characters)';
+      isValid = false;
+    }
+    
+    // Visit date validation 
+    const visitDate = document.getElementById('visitDate').value;
+    if (!visitDate) {
+      document.getElementById('visitDateError').textContent = 'Please select when you visited';
+      isValid = false;
+    } else {
+      const selectedDate = new Date(visitDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (selectedDate > today) {
+        document.getElementById('visitDateError').textContent = 'Visit date cannot be in the future';
+        isValid = false;
+      }
+    }
+    
+    if (!document.getElementById('recommend').value) {
+      document.getElementById('recommendError').textContent = 'Please select an option';
+      isValid = false;
+    }
+    
+    return isValid;
+  }
+});
+  </script>
+</body>
+</html>

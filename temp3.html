@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eachanari Vinayagar Temple</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .content {
+            max-height: 120px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .expanded {
+            max-height: 600px;
+        }
+        .read-more-btn {
+            color: blue;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        /* Styling for the image */
+        img {
+            width: 100%; /* Makes the image responsive */
+            max-width: 900px; /* Increased maximum width */
+            height: auto; /* Maintains the aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+            margin-top: 20px; /* Adds space between the text and the image */
+            margin-left: auto; /* Centers the image horizontally */
+            margin-right: auto; /* Centers the image horizontally */
+            display: block; /* Ensures the image is on its own line */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adds smooth transition for hover effect */
+        }
+        /* Hover effect for the image */
+        img:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1)100%);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button i {
+            font-size: 18px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+    <a class="back-button" href="add1.html">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="container">
+        <h2>🙏 Eachanari Vinayagar Temple - A Sacred Ganesha Shrine</h2>
+        <p class="content" id="text">
+            Eachanari Vinayagar Temple, located about 12 km from Coimbatore, is one of the most revered temples dedicated to Lord Vinayagar (Ganesha)...  
+            <br><br>
+            🏛️ Historical & Architectural Marvel:  
+            <br>🔹 Dating back to the 16th century, built around a legendary Ganesha idol.  
+            <br>🔹 Features Dravidian-style gopuram and a gold-plated idol.  
+            <br><br>
+            🌟 Divine Rituals & Offerings:  
+            <br>🔹 Daily abhishekam, poojas, and special ceremonies.  
+            <br>🔹 Facilities for weddings, homams, and anna dhanam.  
+            <br><br>
+            🎉 Festivals & Celebrations:  
+            <br>🔹 Grand celebrations of Vinayaka Chathurthi, Thaipoosam, Deepavali.  
+            <br>🔹 Devotees partake in spiritual gatherings and processions.  
+            <br><br>
+            🕰️ Temple Timings:  
+            <br>🔹 Open daily for darshan and special poojas.  
+            <br><br>
+            A must-visit for devotees seeking success and blessings!  
+        </p>
+        
+        <span class="read-more-btn" onclick="toggleText()" id="toggle-btn">Read More</span>
+    </div>
+   
+    <img src="eachanari-vinayagar-temple-1657093577_512bfd36ac4b4dce071a.webp" alt="Eachanari Vinayagar Temple">
+
+    <script>
+        function toggleText() {
+            var content = document.getElementById("text");
+            var btn = document.getElementById("toggle-btn");
+            if (content.classList.contains("expanded")) {
+                content.classList.remove("expanded");
+                btn.innerText = "Read More";
+            } else {
+                content.classList.add("expanded");
+                btn.innerText = "Read Less";
+            }
+        }
+    </script>
+
+</body>
+</html>

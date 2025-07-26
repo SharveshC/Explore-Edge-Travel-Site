@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Commute | Explore Edge</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      padding: 20px;
+    }
+
+    .page-header {
+      background: linear-gradient(90deg,
+          rgba(251, 196, 63, 1) 0%,
+          rgba(252, 102, 85, 1) 51%,
+          rgba(252, 70, 107, 1) 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      color: #fc665a;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #777;
+      font-size: 1.1rem;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #fc665a;
+      box-shadow: 0 0 0 2px rgba(252, 102, 85, 0.2);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    button {
+      background: linear-gradient(90deg,
+          rgba(251, 196, 63, 1) 0%,
+          rgba(252, 102, 85, 1) 51%,
+          rgba(252, 70, 107, 1) 100%);
+      color: white;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(252, 102, 85, 0.3);
+      display: block;
+      margin: 0 auto;
+      min-width: 200px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(252, 102, 85, 0.4);
+    }
+
+    .error {
+      color: #fc466b;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .success-message {
+      background: linear-gradient(90deg,
+          rgba(251, 196, 63, 1) 0%,
+          rgba(252, 102, 85, 1) 51%,
+          rgba(252, 70, 107, 1) 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+      margin-top: 20px;
+      display: none;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(252, 102, 85, 0.3);
+    }
+
+    .success-message h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+
+    .success-message p {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .home-button {
+      background: white;
+      color: #fc665a;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .home-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .success-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 20px;
+      color: #777;
+      border-top: 1px solid #eee;
+      margin-top: 30px;
+    }
+
+    .return-home-container {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      .logo {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="page-header">
+      <div class="logo">Explore Edge</div>
+      <p>Book Your Perfect Commute</p>
+    </div>
+
+    <div class="content">
+      <header>
+        <h1>Book a Vehicle for Your Commute</h1>
+        <p class="subtitle">Comfortable and convenient travel within the city</p>
+      </header>
+
+      <form id="vehicleBookingForm">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name">
+          <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="10-digit number">
+          <div class="error" id="phoneError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="pickup">Pickup Location</label>
+          <input type="text" id="pickup" name="pickup">
+          <div class="error" id="pickupError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="drop">Drop Location</label>
+          <input type="text" id="drop" name="drop">
+          <div class="error" id="dropError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Travel Date</label>
+          <input type="date" id="date" name="date">
+          <div class="error" id="dateError"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="vehicleType">Select Vehicle</label>
+          <select id="vehicleType" name="vehicleType">
+            <option value="">-- Select Vehicle Type --</option>
+            <option value="Mini">Mini – Ideal for 2-4 passengers (Affordable & Compact)</option>
+            <option value="Sedan">Sedan – Ideal for 4-7 passengers (Spacious & Comfortable)</option>
+            <option value="Tempo Van">Tempo Van – Ideal for 6-16 passengers (Group Travel)</option>
+            <option value="Bus">Bus – Ideal for 10-40 passengers (For Large Groups)</option>
+          </select>
+          <div class="error" id="vehicleTypeError"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Special Instructions (Optional)</label>
+          <textarea id="notes" name="notes" rows="3" placeholder="E.g., wheelchair access, extra luggage..."></textarea>
+        </div>
+
+        <button type="submit">Book Vehicle</button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        <div class="success-icon">✓</div>
+        <h2>Booking Confirmed!</h2>
+        <p>Your vehicle has been successfully booked. Our team will reach out to you shortly.</p>
+        <a href="/Homepage/index.html" class="home-button">Return to Home</a>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('vehicleBookingForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const errorElements = document.querySelectorAll('.error');
+          for (let i = 0; i < errorElements.length; i++) {
+            errorElements[i].textContent = '';
+          }
+
+          let isValid = true;
+
+          // Name validation 
+          const nameInput = document.getElementById('name').value.trim();
+          const nameRegex = /^[a-zA-Z\s]{3,}$/;
+          if (!nameRegex.test(nameInput)) {
+            document.getElementById('nameError').textContent = 'Please enter a valid name (at least 3 characters)';
+            isValid = false;
+          }
+
+          // Phone validation 
+          const phoneInput = document.getElementById('phone').value.trim();
+          const phoneRegex = /^\d{10}$/;
+          if (!phoneRegex.test(phoneInput)) {
+            document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number';
+            isValid = false;
+          }
+
+          // Pickup location validation 
+          const pickupInput = document.getElementById('pickup').value.trim();
+          const locationRegex = /.{3,}/;
+          if (!locationRegex.test(pickupInput)) {
+            document.getElementById('pickupError').textContent = 'Please enter a valid pickup location';
+            isValid = false;
+          }
+
+          // Drop location validation (at least 3 characters)
+          const dropInput = document.getElementById('drop').value.trim();
+          if (!locationRegex.test(dropInput)) {
+            document.getElementById('dropError').textContent = 'Please enter a valid drop location';
+            isValid = false;
+          }
+
+          // Vehicle type validation 
+          const vehicleType = document.getElementById('vehicleType').value;
+          if (!vehicleType) {
+            document.getElementById('vehicleTypeError').textContent = 'Please select a vehicle type';
+            isValid = false;
+          }
+
+          // Date validation 
+          const travelDate = document.getElementById('date').value;
+          if (!travelDate) {
+            document.getElementById('dateError').textContent = 'Please select a travel date';
+            isValid = false;
+          } else {
+            const selectedDate = new Date(travelDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+              document.getElementById('dateError').textContent = 'Travel date cannot be in the past';
+              isValid = false;
+            }
+          }
+
+          
+          if (isValid) {
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+          }
+        });
+      });
+    </script>
+  </div>
+</body>
+
+</html>

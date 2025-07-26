@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, rgba(251, 196, 63, 0.8) 0%, rgba(252, 102, 85, 0.9) 50%, rgba(252, 70, 107, 0.8) 100%);
+            font-family: "Poppins", sans-serif;
+        }
+        
+        .form-container {
+            background-color: #222222;
+            border-radius: 15px;
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 40px;
+        }
+        
+        .form-field {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        
+        .form-field::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(
+                90deg,
+                rgba(252, 135, 80, 1) 0%,
+                rgba(252, 70, 107, 1) 100%
+            );
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(252, 102, 85, 0.4);
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            accent-color: rgba(252, 102, 85, 1);
+        }
+        
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .login-link a {
+            color: rgba(251, 196, 63, 1);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: none;
+        }
+
+        .password-requirements {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            text-align: left;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        .password-requirements ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+
+        .name-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: none;
+        }
+
+        .email-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: none;
+        }
+
+        .terms-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            text-align: left;
+            display: none;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 10;
+        }
+        
+        .password-toggle:hover {
+            color: white;
+        }
+        
+        .form-field.password {
+            padding-right: 45px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Register</h1>
+        <form id="registration-form">
+            <input type="text" id="fullname" class="form-field" placeholder="Full Name" required>
+            <div id="name-error" class="name-error">Please enter a valid name (min 3 characters, letters only)</div>
+            
+            <input type="email" id="email" class="form-field" placeholder="Email" required>
+            <div id="email-error" class="email-error">Please enter a valid email address</div>
+            
+            <div class="password-container">
+                <input type="password" id="password" class="form-field password" placeholder="Password" required>
+            </div>
+            <div id="password-error" class="error">Password does not meet requirements</div>
+            <div class="password-requirements">
+                Password must contain:
+                <ul>
+                    <li>At least 8 characters</li>
+                    <li>At least one uppercase letter</li>
+                    <li>At least one lowercase letter</li>
+                    <li>At least one number</li>
+                    <li>At least one special character</li>
+                </ul>
+            </div>
+            
+            <div class="password-container">
+                <input type="password" id="confirm-password" class="form-field password" placeholder="Confirm Password" required>
+            </div>
+            <div id="confirm-error" class="error">Passwords do not match</div>
+            
+            <input type="tel" id="phone" class="form-field" placeholder="Mobile Number (10 digits)" maxlength="10" required>
+            <div id="phone-error" class="error">Please enter a valid 10-digit mobile number</div>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree to the Terms and Conditions</label>
+            </div>
+            <div id="terms-error" class="terms-error">You must agree to the Terms and Conditions</div>
+            
+            <button type="submit" class="submit-button">Register</button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? <a href="login1.html">Login</a>
+        </div>
+    </div>
+
+    <script>
+ 
+
+        document.getElementById("registration-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const fullname = document.getElementById("fullname").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+            const phone = document.getElementById("phone").value;
+            const termsChecked = document.getElementById("terms").checked;
+            
+
+            const errorElements = document.querySelectorAll(".error, .name-error, .email-error, .terms-error");
+            errorElements.forEach(element => {
+                element.style.display = "none";
+            });
+            
+
+            const nameRegex = /^[A-Za-z\s]{3,}$/;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            const phoneRegex = /^[0-9]{10}$/;
+            
+            // Validate inputs
+            let isValid = true;
+            
+            if (!nameRegex.test(fullname)) {
+                document.getElementById("name-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!emailRegex.test(email)) {
+                document.getElementById("email-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!passwordRegex.test(password)) {
+                document.getElementById("password-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (password !== confirmPassword) {
+                document.getElementById("confirm-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!phoneRegex.test(phone)) {
+                document.getElementById("phone-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!termsChecked) {
+                document.getElementById("terms-error").style.display = "block";
+                isValid = false;
+            }
+            
+            if (!isValid) return;
+            
+
+            const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+            const userExists = existingUsers.some(user => user.email === email);
+            
+            if (userExists) {
+                alert("A user with this email already exists!");
+                return;
+            }
+
+            const newUser = {
+                fullname,
+                email,
+                password,
+                phone,
+                createdAt: new Date().toISOString()
+            };
+            
+            existingUsers.push(newUser);
+            localStorage.setItem("users", JSON.stringify(existingUsers));
+            
+
+            alert("Registration successful!");
+            window.location.href = "login1.html";
+        });
+    </script>
+</body>
+</html>

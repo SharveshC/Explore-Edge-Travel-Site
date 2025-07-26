@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .destination { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; }
+        .add-to-cart, .remove-btn { padding: 8px 12px; margin: 5px; cursor: pointer; border: none; }
+        .add-to-cart { background-color: #28a745; color: white; }
+        .remove-btn { background-color: red; color: white; }
+        #cart { display: none; }
+        #cart-items { list-style: none; padding: 0; }
+    </style>
+</head>
+<body>
+
+    <h2 id="page-title">Travel Destinations</h2>
+
+    <div id="destinations">
+        <div class="destination">
+            <h3>Velliangiri Andavar Temple</h3>
+            <p>Located in the Velliangiri Hills, known as the South Kailash...</p>
+            <button class="add-to-cart" onclick="addToCart('Velliangiri Andavar Temple')">Add to Cart</button>
+        </div>
+
+        <div class="destination">
+            <h3>Marudhamalai Temple</h3>
+            <p>Famous hill temple dedicated to Lord Murugan...</p>
+            <button class="add-to-cart" onclick="addToCart('Marudhamalai Temple')">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <br>
+    <button onclick="toggleView()">View Cart</button>
+
+    <script>
+        function addToCart(destination) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (!cart.includes(destination)) {
+                cart.push(destination);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                alert(destination + " added to cart!");
+            } else {
+                alert(destination + " is already in the cart.");
+            }
+        }
+
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartList = document.getElementById("cart-items");
+            cartList.innerHTML = cart.length > 0 ? "" : "<p>No destinations</p>";
+
+            cart.forEach((destination, index) => {
+                let li = document.createElement("li");
+                li.textContent = destination;
+
+                let removeBtn = document.createElement("button");
+                removeBtn.textContent = "Remove";
+                removeBtn.classList.add("remove-btn");
+                removeBtn.onclick = function() { removeFromCart(index); };
+
+                li.appendChild(removeBtn);
+                cartList.appendChild(li);
+            });
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        function toggleView() {
+            let destinations = document.getElementById("destinations");
+            let cart = document.getElementById("cart");
+            let pageTitle = document.getElementById("page-title");
+            let button = event.target;
+
+            if (destinations.style.display !== "none") {
+                destinations.style.display = "none";
+                cart.style.display = "block";
+                pageTitle.textContent = "Your Cart";
+                loadCart();
+                button.textContent = "Back to Destinations";
+            } else {
+                destinations.style.display = "block";
+                cart.style.display = "none";
+                pageTitle.textContent = "Travel Destinations";
+                button.textContent = "View Cart";
+            }
+        }
+    </script>
+
+</body>
+</html>

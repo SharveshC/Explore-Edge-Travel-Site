@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Destination</title>
+    <style>
+        #cart {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            max-width: 300px;
+        }
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        .add-to-cart {
+            padding: 8px 12px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="destination">
+        <h2>Velliangiri Andavar Temple</h2>
+        <p>Located in the Velliangiri Hills, this temple is known as the South Kailash...</p>
+        <button class="add-to-cart" onclick="addToCart('Velliangiri Andavar Temple')">Add to Cart</button>
+    </div>
+
+    <div id="cart">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function addToCart(destination) {
+            if (!cart.includes(destination)) {
+                cart.push(destination);
+                alert(destination + " added to cart!");
+                updateCart();
+            } else {
+                alert(destination + " is already in the cart.");
+            }
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById("cart-items");
+            cartList.innerHTML = "";
+
+            cart.forEach(item => {
+                let li = document.createElement("li");
+                li.textContent = item;
+                cartList.appendChild(li);
+            });
+        }
+    </script>
+
+</body>
+</html>
