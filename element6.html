@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Edge - Footer Design</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+    }
+    
+    .content {
+      flex: 1;
+      padding: 40px;
+      background-color: #f8f8f8;
+    }
+    
+    .footer {
+      background-color: #000000;
+      color: #ffffff;
+      position: relative;
+
+    }
+    
+    .gradient-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+    }
+    
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    
+    .company-info {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .footer-logo {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-logo span {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .company-description {
+      color: #aaaaaa;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+    
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+    
+    .footer-nav-section {
+      min-width: 150px;
+    }
+    
+    .footer-nav-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #ffffff;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-nav-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 30px;
+      height: 3px;
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 100%);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+      color: #cccccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 0;
+    }
+    
+    .footer-links a:hover {
+      color: #ffffff;
+      padding-left: 5px;
+    }
+    
+    .footer-links a:hover::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 100%);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #222222;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 100%);
+      transform: translateY(-4px);
+    }
+    
+    .cta-section {
+      background-color: #111111;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 50px;
+    }
+    
+    .cta-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .cta-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    
+    .cta-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .cta-description {
+      color: #aaaaaa;
+    }
+    
+    .cta-button {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+      color: white;
+      transition: all 0.3s ease;
+      background-size: 200% auto;
+    }
+    
+    .cta-button:hover {
+      background-position: right center;
+      box-shadow: 0 5px 15px rgba(252, 102, 85, 0.3);
+    }
+    
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 30px;
+      border-top: 1px solid #222222;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .copyright {
+      color: #888888;
+      font-size: 14px;
+    }
+    
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .footer-bottom-links a {
+      color: #888888;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-bottom-links a:hover {
+      color: #ffffff;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-top {
+        flex-direction: column;
+      }
+      
+      .cta-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <footer class="footer">
+    <div class="gradient-bar"></div>
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="company-info">
+          <div class="footer-logo"><span>Explore Edge</span></div>
+          <p class="company-description">Pushing boundaries and exploring new frontiers. We help you navigate the edge of possibility with cutting-edge solutions and innovative experiences.</p>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <i class="fab fa-pinterest-p"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-nav">
+          <div class="footer-nav-section">
+            <h4 class="footer-nav-title">Explore</h4>
+            <ul class="footer-links">
+              <li><a href="#">Adventures</a></li>
+              <li><a href="#">Destinations</a></li>
+              <li><a href="#">Experiences</a></li>
+              <li><a href="#">Travel Guides</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-nav-section">
+            <h4 class="footer-nav-title">Services</h4>
+            <ul class="footer-links">
+              <li><a href="#">Tour Planning</a></li>
+              <li><a href="#">Custom Itineraries</a></li>
+              <li><a href="#">Vehicles Rental</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-nav-section">
+            <h4 class="footer-nav-title">Company</h4>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cta-section">
+        <div class="cta-content">
+          <div class="cta-text">
+            <h3 class="cta-title">Ready to Start Your Adventure?</h3>
+            <p class="cta-description">Join our community and get exclusive access to new destinations and special offers.</p>
+          </div>
+          <a href=""><button class="cta-button">Start Exploring</button></a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="copyright">&copy; 2025 Explore Edge. All rights reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Cart</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .destinationcart{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(251, 196, 63, 0.8) 0%, rgba(252, 102, 85, 0.9) 50%, rgba(252, 70, 107, 0.8) 100%);    
+            align-items: center;
+        }
+
+        .container {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 90%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(252, 70, 107, 0.1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>') no-repeat center center;
+            background-size: 80px 80px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        h2 {
+            color: rgba(252, 70, 107, 1);
+            font-size: 28px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(251, 196, 63, 1) 0%, rgba(252, 102, 85, 1) 100%);
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .cart-items li {
+            background: white;
+            margin: 15px auto;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid rgba(251, 196, 63, 1);
+            position: relative;
+            text-align: left;
+        }
+
+        .cart-items li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .destination {
+            font-weight: 600;
+            color: #333;
+            font-size: 18px;
+        }
+
+        .details {
+            display: block;
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .clear-cart {
+            background: linear-gradient(90deg, rgba(252, 102, 85, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(252, 70, 107, 0.3);
+            margin-top: 20px;
+            width: 200px;
+        }
+
+        .clear-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(252, 70, 107, 0.4);
+        }
+
+        .remove-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #e60000;
+        }
+
+        .empty-cart {
+            display: none;
+            color: #777;
+            font-style: italic;
+            margin: 40px 0;
+        }
+
+        .header-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .cart-items li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .clear-cart {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .remove-btn {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src="navbar.html"  style="height: 80px; width: 100%;position: sticky;top: 0;z-index: 1000;"></iframe>
+    <div class="destinationcart">
+        <div class="container">
+            <h2><span class="header-icon">List Your Destinations to Visit in Coimbatore</span></h2>
+            <ul id="cart-list" class="cart-items"></ul>
+            <p id="empty-message" class="empty-cart">Your travel itinerary is empty. Add some adventures!</p>
+            <button class="clear-cart" onclick="clearCart()">Clear Itinerary</button>
+        </div>
+    </div>
+    <iframe src="element6.html"  style="height: 77vh; width: 100%; bottom: 0;margin-bottom: -200px;"></iframe>
+    <script>
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartList = document.getElementById("cart-list");
+            let emptyMessage = document.getElementById("empty-message");
+            cartList.innerHTML = "";
+
+            if (cart.length === 0) {
+                emptyMessage.style.display = "block";
+            } else {
+                emptyMessage.style.display = "none";
+
+                cart.forEach((item, index) => {
+                    let parts = item.split(" - ");
+                    let destination = parts[0];
+                    let details = parts.length > 1 ? parts[1] : "";
+                    details = details.replace(/\$[0-9.,]+/g, "").trim();
+
+                    let li = document.createElement("li");
+                    li.innerHTML = `
+                        <div>
+                            <span class="destination">${destination}</span>
+                            <span class="details">${details}</span>
+                        </div>
+                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                    `;
+                    cartList.appendChild(li);
+                });
+            }
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart");
+            displayCart();
+            alert("Your travel itinerary has been cleared!");
+        }
+
+        function initializeWithSampleData() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart.length === 0) {
+                cart = [
+                    "Marudhamalai Temple - Famous hill temple",
+                    "VOC Park - Family-friendly recreation spot",
+                    "Brookefields Mall - Shopping and dining",
+                    "Perur Pateeswarar Temple - Historic temple architecture"
+                ];
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+            displayCart();
+        }
+
+        initializeWithSampleData();
+    </script>
+</body>
+
+</html>

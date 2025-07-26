@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Explore Edge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, rgba(251, 196, 63, 0.1) 0%, rgba(252, 102, 85, 0.1) 50%, rgba(252, 70, 107, 0.1) 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 8%;
+        }
+
+        .logo {
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar {
+            list-style: none;
+        }
+
+        .navbar li {
+            display: inline-flex;
+            gap: 30px;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover:after {
+            width: 100%;
+        }
+
+        .navbar a:hover {
+            color: #FC466B;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .hero h1:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hero span {
+            color: #FC466B;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .contact-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease 0.3s forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(251, 196, 63, 0.1) 0%, rgba(252, 102, 85, 0.1) 50%, rgba(252, 70, 107, 0.1) 100%);
+        }
+
+        .contact-header h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .contact-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background: #fff;
+        }
+
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .form-control:focus {
+            border-color: #FC466B;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(252, 70, 107, 0.2);
+            background-color: #fff;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(252, 70, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(252, 70, 107, 1) 0%, rgba(252, 135, 80, 1) 100%);
+            transition: width 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(252, 70, 107, 0.5);
+        }
+
+        .info-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(252, 70, 107, 0.9) 0%, rgba(252, 135, 80, 0.9) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .info-title:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.7);
+            bottom: 0;
+            left: 0;
+        }
+
+        .info-item {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon {
+            margin-right: 15px;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover .icon {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .text p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #222;
+            padding: 30px 0;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .social {
+            margin-bottom: 20px;
+        }
+
+        .social a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social a:hover {
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            transform: translateY(-5px);
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Form validation visual indicators */
+        .form-control:valid {
+            border-color: #4CAF50;
+        }
+
+        .form-control:invalid:not(:placeholder-shown) {
+            border-color: #F44336;
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Input field focus effects */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .form-group:focus-within::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Floating labels effect */
+        .form-group {
+            position: relative;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .navbar li {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar a {
+                font-size: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .contact-wrapper {
+                flex-direction: column;
+            }
+
+            .contact-form, .info-section {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Animation for the form submission button */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(252, 70, 107, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(252, 70, 107, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(252, 70, 107, 0);
+            }
+        }
+
+        .btn-primary.animate {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+  <iframe src="navbar.html"  style="height: 80px; width: 100%;position: sticky;top: 0;z-index: 1000;"></iframe>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>We'd love to hear from <span>you</span></h1>
+            <p>Whether you have questions about destinations, need travel advice, or want to share your experiences, we're here for you.</p>
+        </div>
+        
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Get in Touch</h2>
+                <p>Fill out the form below, and we'll get back to you as soon as possible.</p>
+            </div>
+            
+            <div class="contact-wrapper">
+                <form id="contact-form" class="contact-form" action="#" method="POST" novalidate>
+                    <h3 class="title">Send us a message</h3>
+                    <p class="description">
+                      Tell us about your travel plans or questions you might have.
+                    </p>
+                  
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control" placeholder="Enter your Name" required minlength="2">
+                    </div>
+                  
+                    <div class="form-group">
+                      <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                    </div>
+                  
+                    <div class="form-group">
+                      <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required pattern="[0-9+() -]{7,15}">
+                    </div>
+                  
+                    <div class="form-group">
+                      <textarea name="message" class="form-control" rows="5" placeholder="Your message" required minlength="10"></textarea>
+                    </div>
+                  
+                    <button type="submit" class="btn-primary" id="submitBtn">Send Message</button>
+                </form>
+                    
+                <div class="info-section">
+                    <h3 class="info-title">Contact Information</h3>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Our Location</h4>
+                            <p>123 Travel Street, Adventure City, AC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Phone Number</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Email Address</h4>
+                            <p>hello@exploreedge.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="text">
+                            <h4>Working Hours</h4>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <iframe src="element6.html"  style="height: 77vh; width: 100%; bottom: 0;margin-bottom: -200px;"></iframe>
+    
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form validation
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contact-form");
+            const submitBtn = document.getElementById("submitBtn");
+        
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // Always prevent actual submission for demo
+                
+                const name = form.name.value.trim();
+                const email = form.email.value.trim();
+                const phone = form.phone.value.trim();
+                const message = form.message.value.trim();
+        
+                let isValid = true;
+                let errorMsg = "";
+        
+                if (name.length < 2) {
+                    isValid = false;
+                    errorMsg += "Name must be at least 2 characters long.\n";
+                }
+        
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    isValid = false;
+                    errorMsg += "Please enter a valid email address.\n";
+                }
+        
+                const phoneRegex = /^[0-9+() -]{7,15}$/;
+                if (!phoneRegex.test(phone)) {
+                    isValid = false;
+                    errorMsg += "Please enter a valid phone number.\n";
+                }
+        
+                if (message.length < 10) {
+                    isValid = false;
+                    errorMsg += "Message must be at least 10 characters long.\n";
+                }
+        
+                if (!isValid) {
+                    alert(errorMsg);    // Show alert with all error messages
+                } else {
+                    // Show success feedback
+                    submitBtn.classList.add('animate');
+                    submitBtn.textContent = "Message Sent!";
+                    submitBtn.disabled = true;
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.classList.remove('animate');
+                        submitBtn.textContent = "Send Message";
+                        submitBtn.disabled = false;
+                    }, 3000);
+                }
+            });
+
+            const inputs = form.querySelectorAll('.form-control');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.checkValidity()) {
+                        this.style.borderColor = '#4CAF50';
+                    } else if (this.value !== '') {
+                        this.style.borderColor = '#F44336';
+                    }
+                });
+
+                input.addEventListener('focus', function() {
+                    this.style.borderColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

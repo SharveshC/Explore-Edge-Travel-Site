@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Edge</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #fbf9f9;
+        }
+
+        #formList::-webkit-scrollbar {
+            display: none;
+        }
+
+        .element-explore-destinations {
+            min-height: 100vh;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .headingbrowseCollection {
+            text-align: center;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 90%;
+            background: linear-gradient(90deg,
+                    rgba(252, 102, 85, 1) 51%,
+                    rgba(252, 70, 107, 1) 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            min-height: 100px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .headingbrowseCollection:hover {
+            transform: translateY(-5px);
+        }
+
+        .headingbrowseCollection h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            margin-bottom: 5px;
+            font-weight: 900;
+        }
+
+        .headingbrowseCollection p {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            opacity: 0.8;
+        }
+
+        .BrowseCollection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            z-index: 900;
+            position: relative;
+        }
+
+        .direction {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 100%;
+            z-index: 10;
+        }
+
+        .direction button {
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: 0.5s;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .direction button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.1);
+        }
+
+        .item {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.5s;
+            margin: 5px;
+            flex-shrink: 0;
+        }
+
+        .card-img-top {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .btn.btn-primary {
+            position: absolute;
+            bottom: 0px;
+            left: 70px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+            color: #edebeb;
+            width: 140px;
+            height: 60px;
+            border: none;
+            border-bottom-left-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 1rem;
+            position: relative;
+            min-height: 180px;
+        }
+
+        .card-body p {
+            margin: 10px;
+        }
+
+        .btn.btn-primary:hover {
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .item .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+
+        }
+
+        .item .card:hover {
+            transform: translateY(-7px);
+
+        }
+
+        #formList {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            max-width: 90%;
+        }
+
+        #list {
+            display: flex;
+            gap: 20px;
+        }
+
+        .scrollingplaces {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            #formList {
+                max-width: 80%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .element-explore-destinations {
+                padding: 10px;
+            }
+
+            #formList {
+                max-width: 75%;
+            }
+
+            .item .card {
+                width: 18rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .headingbrowseCollection {
+                padding: 15px 10px;
+            }
+
+            #formList {
+                max-width: 70%;
+            }
+
+            .item .card {
+                width: 16rem !important;
+                height: 28rem !important;
+            }
+
+            .card-img-top {
+                height: 220px;
+            }
+
+            .btn.btn-primary {
+                width: 120px;
+                height: 50px;
+                left: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="element-explore-destinations">
+        <div data-aos="fade-down" class="headingbrowseCollection">
+            <h2>Browse Collection</h2>
+            <p>Discover what to do, see, and eat in Coimbatore</p>
+        </div>
+        <div class="BrowseCollection">
+            <div class="scrollingplaces">
+                <div class="direction">
+                    <button id="previous"><i class="fa fa-chevron-left"></i></button>
+                </div>
+            </div>
+
+            <div id="formList">
+                <div id="list">
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="marudamalaitemple.jpg" class="card-img-top"
+                                    alt="Marudamalai Temple"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Temple</h5>
+                                <p class="card-text">Coimbatore's ancient, revered temples with rich heritage</p>
+                                <div class="outer-button-color" style="margin-top: 17px;">
+                                    <a href="add1.html" target="_top" class="btn btn-primary">Explore<br> More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="monkeyfalls.JPG" class="card-img-top"
+                                    alt="Monkey Falls"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Natural Attraction</h5>
+                                <p class="card-text">Parks, waterfalls, and sanctuaries <br> await you.</p>
+                                <div class="outer-button-color">
+                                    <a href="add6.html" target="_top" class="btn btn-primary">Explore<br> More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="restaurentsfood.jpg" class="card-img-top"
+                                    alt="Restaurants"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Restaurants</h5>
+                                <p class="card-text">Taste the best local and international <br>cuisines.</p>
+                                <div class="outer-button-color">
+                                    <a href="add3.html" target="_top" class="btn btn-primary">Explore <br> More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="Adventure.jpg" class="card-img-top" alt="Adventure"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Adventure & Sports</h5>
+                                <p class="card-text">Thrilling activities for adrenaline lovers.</p>
+                                <div class="outer-button-color">
+                                    <a href="add5.html" target="_top" class="btn btn-primary">Explore <br> More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="malampuzhadam.jpeg" class="card-img-top"
+                                    alt="Malampuzha Dam"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Nearby Getaways</h5>
+                                <p class="card-text">Places to visit near Coimbatore <br>within 100 km.</p>
+                                <div class="outer-button-color">
+                                    <a href="add4.html" target="_top" class="btn btn-primary">Explore <br> More</a>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="card" style="width: 20rem; height: 30rem;">
+                            <a href="#"><img src="shopstop.jpg" class="card-img-top" alt="Shopping"></a>
+                            <div class="card-body">
+                                <h5 class="card-title" style="text-align: center;">Coimbatore ShopStop</h5>
+                                <p class="card-text">Find the best shopping spots <br>in the city.</p>
+                                <div class="outer-button-color">
+                                    <a href="add2.html" target="_top" class="btn btn-primary">Explore <br> More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="scrollingplaces">
+                <div class="direction">
+                    <button id="next"><i class="fa fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById('next').onclick = function () {
+            const widthItem = document.querySelector('.item').offsetWidth;
+            document.getElementById('formList').scrollLeft += widthItem + 25;
+        }
+
+        document.getElementById('previous').onclick = function () {
+            const widthItem = document.querySelector('.item').offsetWidth;
+            document.getElementById('formList').scrollLeft -= widthItem + 25;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                once: true,
+                duration: 1000
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Edge Coimbatore Reviews</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            width: 100%;
+            height: fit-content;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        .stack-area {
+            width: 100%;
+            height: 400vh;
+            position: relative;
+            background: white;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left,
+        .right {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .left {
+            flex-basis: 30%;
+            padding: 20px;
+            background: linear-gradient(90deg, rgba(251, 196, 63, 1) 0%, rgba(252, 102, 85, 1) 51%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+        }
+
+        .right {
+            flex-basis: 70%;
+        }
+
+        /* Left Content */
+        .title {
+            width: 100%;
+            max-width: 420px;
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .sub-title {
+            width: 100%;
+            max-width: 420px;
+            font-size: clamp(14px, 2vw, 16px);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .sub-title button {
+            font-size: clamp(14px, 2vw, 16px);
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s ease-in-out;
+            font-weight: 600;
+        }
+
+        .sub-title button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            height: 55vh;
+            width: 60vh;
+            border-radius: 25px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            transition: 0.5s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 98%;
+            height: 60%;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            padding: 20px 35px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .reviewer img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #FBC43F;
+        }
+
+        .reviewer-info {
+            margin-left: 15px;
+        }
+
+        .reviewer-name {
+            font-size: clamp(14px, 2vw, 18px);
+            font-weight: 600;
+            color: #333;
+        }
+
+        .reviewer-location {
+            font-size: clamp(12px, 1.5vw, 14px);
+            color: #666;
+        }
+
+        .rating {
+            display: flex;
+            margin-top: 5px;
+        }
+
+        .star {
+            color: #FBC43F;
+            margin-right: 2px;
+        }
+
+        .place-name {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: clamp(12px, 1.8vw, 16px);
+            line-height: 1.5;
+            color: #555;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .away {
+            transform-origin: bottom left;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) {
+            background-color: white;
+        }
+
+        .card:nth-child(2) {
+            background-color: white;
+        }
+
+        .card:nth-child(3) {
+            background-color: white;
+        }
+
+        .card:nth-child(4) {
+            background-color: white;
+        }
+
+        .card:nth-child(5) {
+            background-color: white;
+        }
+
+        .card:nth-child(6) {
+            background-color: white;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 1200px) {
+            .card {
+                margin-left: 0;
+                margin-top: 0;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .stack-area {
+                flex-direction: column;
+            }
+
+            .left {
+                height: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 10;
+                padding: 10px;
+                background: linear-gradient(90deg, rgba(251, 196, 63, 0.85) 0%, rgba(252, 102, 85, 0.85) 51%, rgba(252, 70, 107, 0.85) 100%);
+            }
+
+            .right {
+                margin-top: 250px;
+                flex-basis: 100%;
+                width: 100%;
+                height: auto;
+                padding-top: 0;
+            }
+
+            .title {
+                font-size: 28px;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+                margin: 0;
+                padding: 0;
+            }
+
+            .sub-title {
+                font-size: 14px;
+                margin: 10px 0;
+            }
+
+            .sub-title button {
+                margin-top: 10px;
+            }
+
+            .card {
+                transform: translate(-50%, -50%) rotate(0deg) !important;
+                margin-top: 0;
+                top: 180px;
+                /* Position first card right below the header */
+            }
+
+            .away {
+                transform: translateY(-130vh) rotate(-50deg) !important;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .left {
+                padding: 10px;
+            }
+
+            .title {
+                font-size: 26px;
+            }
+
+            .card {
+                top: 150px;
+                /* Adjust for smaller header on medium screens */
+            }
+
+            .card-details {
+                padding: 15px 20px;
+            }
+
+            .reviewer img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .left {
+                padding: 8px;
+            }
+
+            .title {
+                font-size: 22px;
+                line-height: 1.2;
+            }
+
+            .sub-title {
+                font-size: 12px;
+                margin: 5px 0;
+            }
+
+            .sub-title button {
+                padding: 6px 14px;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+
+            .card {
+                width: 90%;
+                height: 300px;
+                padding: 15px;
+                border-radius: 15px;
+                top: 120px;
+            }
+
+            .reviewer img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .reviewer-info {
+                margin-left: 10px;
+            }
+
+            .review-text {
+                -webkit-line-clamp: 2;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stack-area">
+        <div class="left">
+            <div class="title">Coimbatore Experiences</div>
+            <div class="sub-title">
+                Discover what travelers have to say about their adventures in Coimbatore, the "Manchester of South
+                India".
+                <br />
+                <button>Share Your Journey</button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="marudamalaitemple.jpg" alt="Marudamalai Temple">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller1.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Ravi Kumar</div>
+                            <div class="reviewer-location">Chennai, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Marudamalai Temple</div>
+                    <div class="review-text">"The peaceful atmosphere and beautiful hilltop views made this temple visit
+                        truly special. The architecture is stunning and the spiritual energy is palpable."</div>
+                </div>
+            </div>
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="siruvani-waterfalls.jpg" alt="Siruvani Waterfalls">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller2.avif" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Priya Singh</div>
+                            <div class="reviewer-location">Mumbai, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Siruvani Waterfalls</div>
+                    <div class="review-text">"The water here is known to be the second sweetest in the world! The falls
+                        are breathtaking and the surrounding forest is so serene. Perfect for nature lovers."</div>
+                </div>
+            </div>
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="Gedee_Car_Museum.jpg" alt="VOC Park and Zoo">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller3.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Arun Patel</div>
+                            <div class="reviewer-location">Bangalore, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">The Gedee Car Museum</div>
+                    <div class="review-text">"A paradise for automobile enthusiasts! The museum showcases a fascinating
+                        collection of vintage and classic cars from around the world."</div>
+                </div>
+            </div>
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="shopstop.jpg" alt="Kovai Kondattam">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller4.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Meera Krishnan</div>
+                            <div class="reviewer-location">Hyderabad, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">☆</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Brookefields Mall</div>
+                    <div class="review-text">"A one-stop destination for shopping, entertainment, and dining in
+                        Coimbatore.It's the perfect place for a day out with family and friends."</div>
+                </div>
+            </div>
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="Slide3.jpg" alt="Dhyanalinga Temple">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller5.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Rajesh Verma</div>
+                            <div class="reviewer-location">Delhi, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Dhyanalinga Temple</div>
+                    <div class="review-text">"One of the most peaceful places I've ever visited. The meditation
+                        experience is transformative and the architecture is magnificent. A must-visit spiritual
+                        destination."</div>
+                </div>
+            </div>
+            <div class="card ca">
+                <div class="card-image">
+                    <img src="Eachanari_Vinayakar_Temple.jpg" alt="Eachanari Vinayagar Temple">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller6.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Lakshmi Nair</div>
+                            <div class="reviewer-location">Kochi, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Eachanari Vinayagar Temple</div>
+                    <div class="review-text">"Home to one of the largest Ganesha idols in India. The temple has a
+                        beautiful atmosphere and the rituals are performed with great devotion."</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="Coimbatore-main1.jpg" alt="Eachanari Vinayagar Temple">
+                </div>
+                <div class="card-details">
+                    <div class="reviewer">
+                        <img src="traveller6.jpg" alt="Reviewer">
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Lakshmi Nair</div>
+                            <div class="reviewer-location">Kochi, India</div>
+                            <div class="rating">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-name">Eachanari Vinayagar Temple</div>
+                    <div class="review-text">"Home to one of the largest Ganesha idols in India. The temple has a
+                        beautiful atmosphere and the rituals are performed with great devotion."</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cards = document.querySelectorAll(".ca");
+        let stackArea = document.querySelector(".stack-area");
+
+        function rotateCards() {
+            let angle = 0;
+            cards.forEach((card, index) => {
+                if (card.classList.contains("away")) {
+                    card.style.transform = `translateY(-130vh) rotate(-50deg)`;
+                    card.style.opacity = "0";
+                } else {
+                    if (window.innerWidth > 992) {
+                        card.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+                    } else {
+                        card.style.transform = `translate(-50%, -50%)`;
+                    }
+                    card.style.opacity = "1";
+                    angle -= 5;
+                    card.style.zIndex = cards.length - index;
+                }
+            });
+        }
+
+        rotateCards();
+
+        window.addEventListener("scroll", () => {
+            let distance = window.innerHeight * 0.35;
+            let topVal = stackArea.getBoundingClientRect().top;
+            let index = -1 * (topVal / distance + 1);
+            index = Math.floor(index);
+
+            for (let i = 0; i < cards.length; i++) {
+                if (i <= index) {
+                    cards[i].classList.add("away");
+                } else {
+                    cards[i].classList.remove("away");
+                }
+            }
+            rotateCards();
+        });
+
+        // Handle responsive behavior
+        window.addEventListener("resize", rotateCards);
+    </script>
+</body>
+
+</html>

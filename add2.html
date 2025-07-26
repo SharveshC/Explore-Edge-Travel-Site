@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Destinations in Coimbatore</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(252, 70, 107, 0.3);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .pack-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px auto;
+        }
+
+        .package-item {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(252, 135, 80, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(252, 135, 80, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(252, 70, 107, 0.15);
+        }
+
+        .package-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .package-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .item-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .place-badge {
+            background: linear-gradient(90deg,
+                rgba(251, 196, 63, 0.2) 0%,
+                rgba(252, 102, 85, 0.2) 100%);
+            color: rgba(252, 70, 107, 1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .package-item h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+
+        .package-item h3 a {
+            text-decoration: none;
+            background: linear-gradient(90deg,
+                rgba(252, 135, 80, 1) 0%,
+                rgba(252, 70, 107, 1) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .package-item h3 a:hover {
+            opacity: 0.8;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(90deg,
+                rgba(252, 135, 80, 1) 0%,
+                rgba(252, 70, 107, 1) 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(252, 70, 107, 0.2);
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(252, 70, 107, 0.3);
+        }
+
+        .add-to-cart i {
+            font-size: 18px;
+        }
+
+        .cart-btn {
+            background: linear-gradient(90deg,
+                rgba(251, 196, 63, 1) 0%,
+                rgba(252, 102, 85, 1) 51%,
+                rgba(252, 70, 107, 1) 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px auto 50px auto;
+            width: auto;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(252, 70, 107, 0.3);
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(252, 70, 107, 0.4);
+        }
+
+        .rating {
+            color: rgba(251, 196, 63, 1);
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        /* Toast styling overrides for Bootstrap */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .custom-toast {
+            background: linear-gradient(90deg,
+                rgba(252, 135, 80, 0.95) 0%,
+                rgba(252, 70, 107, 0.95) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast-header {
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .toast-body {
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .pack-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pack-content {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 30px 15px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src="navbar.html"  style="height: 80px; width: 100%;position: sticky;top: 0;z-index: 1000;"></iframe>
+    <header>
+        <div class="container">
+            <h2>Popular Shopping Destinations in Coimbatore</h2>
+            <div class="subtitle">Discover the best shopping experiences in the city</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="pack-content">
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 22.48.14 - A modern shopping mall in Coimbatore, India, with bright lights, luxury stores, a busy food court, and a central atrium filled with shoppers. The mall.webp" alt="Brookefields Mall">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Premium Mall</div>
+                        <h3><a href="sh1.html">Brookefields Mall</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="description">The city's premier shopping destination with international brands, multiplex cinema, and a diverse food court.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Brookefields Mall')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+            
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 22.52.44 - A stylish shopping mall in Coimbatore, India, featuring branded fashion stores, a cinema, and a gaming zone. The mall is well-lit with modern interior.webp" alt="Fun Republic Mall">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Entertainment Hub</div>
+                        <h3><a href="sh2.html">Fun Republic Mall</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="description">A stylish shopping mall featuring branded fashion stores, cinema, gaming zone and recreational activities.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Fun Republic Mall')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+            
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 23.01.18 - A crowded electronics hub in Coimbatore, India, filled with mobile shops, gadget stores, and repair centers. The complex is packed with customers expl.webp" alt="Lakshmi Complex">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Electronics Hub</div>
+                        <h3><a href="sh3.html">Lakshmi Complex</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="description">A crowded electronics hub filled with mobile shops, gadget stores, and repair centers at competitive prices.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Lakshmi Complex')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+            
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 23.03.29 - A grand saree showroom in Coimbatore, India, featuring colorful silk sarees, bridal collections, and traditional motifs. The store is well-lit with ne.webp" alt="Shree Devi Textile">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Traditional Textiles</div>
+                        <h3><a href="sh4.html">Shree Devi Textile</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="description">A grand saree showroom featuring colorful silk sarees, bridal collections, and traditional motifs.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Shree Devi Textile')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+            
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 23.06.20 - A bustling textile market street in Coimbatore, India, filled with wholesale textile shops, colorful fabric displays, and busy shoppers. The street is.webp" alt="Oppanakara Street">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Local Market</div>
+                        <h3><a href="sh5.html">Oppanakara Street</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <p class="description">A bustling textile market street filled with wholesale textile shops, colorful fabric displays, and busy shoppers.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Oppanakara Street')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+            
+            <div class="package-item">
+                <img src="7327c2788f3bb28ebdb130220b147744.jpg" alt="Prozone Mall">
+                <div class="item-content">
+                    <div>
+                        <div class="place-badge">Luxury Shopping</div>
+                        <h3><a href="sh6.html">Prozone Mall</a></h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="description">A modern shopping destination with premium brands, entertainment options, and upscale dining experiences.</p>
+                    </div>
+                    <button class="add-to-cart" onclick="addToCart('Prozone Mall')">
+                         Add to destination
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="cart-btn" onclick="window.location.href='cart.html'">
+         Go to Destinations
+        </button>
+    </div>
+
+    <!-- Bootstrap Toast Container -->
+    <div class="toast-container">
+        <div id="cartToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            
+            <div class="toast-body" id="toast-message">
+                Item added to Favorites!
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function addToCart(place) {
+            let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+            
+            // Get references to Bootstrap toast elements
+            const toastEl = document.getElementById('cartToast');
+            const toastMessage = document.getElementById('toast-message');
+            const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+            
+            if (!cart.includes(place)) {
+                cart.push(place);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                toastMessage.textContent = place + " added to Destinations!";
+            } else {
+                toastMessage.textContent = place + " is already in the Destinations!";
+            }
+            
+            // Show the Bootstrap toast
+            toast.show();
+        }
+    </script>
+</body>
+</html>

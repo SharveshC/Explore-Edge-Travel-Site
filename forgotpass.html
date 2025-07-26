@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(251, 196, 63, 0.8) 0%, rgba(252, 102, 85, 0.9) 50%, rgba(252, 70, 107, 0.8) 100%);
+
+            padding: 20px;
+        }
+
+        .card {
+            background: #222222;
+            width: 100%;
+            max-width: 620px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-body {
+            padding: 40px 30px;
+        }
+
+        h2 {
+            color: white;
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 3px rgba(251, 196, 63, 0.2);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .options {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            accent-color: rgba(252, 102, 85, 1);
+        }
+
+        .checkbox-wrapper label {
+            color: rgba(255, 255, 255, .7);
+            font-size: 14px;
+        }
+
+        .btn {
+            width: 100%;
+            background: linear-gradient(
+                90deg,
+                rgba(252, 135, 80, 1) 0%,
+                rgba(252, 70, 107, 1) 100%
+            );
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(252, 102, 85, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(252, 102, 85, 0.4);
+            
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .login-link {
+            padding: 20px 0 0;
+            text-align: center;
+        }
+
+        .login-link a {
+            color: rgba(251, 196, 63, 1);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-link a:hover {
+            color: rgba(252, 102, 85, 1);
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .card {
+                border-radius: 12px;
+            }
+
+            .card-body {
+                padding: 25px 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-body">
+            <h2>Forgot Password</h2>
+            <p class="subtitle">Enter your mobile number to receive an OTP</p>
+            
+            <form id="forgotPasswordForm">
+                <div class="input-group">
+                    <label for="phone">Mobile Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit mobile number" maxlength="10" required>
+                </div>
+                
+                <div class="options">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Remember this device</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Send OTP</button>
+            </form>
+            
+            <div class="login-link">
+                <p style="color: white;">Remember your password? <a href="login1.html">Back to Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const phoneNumber = document.getElementById('phone').value;
+            
+
+            if (phoneNumber.length !== 10 || !/^\d+$/.test(phoneNumber)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return false;
+            }
+
+            alert('OTP has been sent to your mobile number');
+            window.location.href = 'verify-otp.html';
+        });
+    </script>
+</body>
+</html>

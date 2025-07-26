@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coimbatore City Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+          background-color: white;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: clamp(24px, 5vw, 36px);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 0 10px;
+        }
+
+        .choosemenu {
+            color: #f7f7f7;
+            width: 100%;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .navigate-tabs {
+            background: linear-gradient(0deg,
+                    
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+            padding: 0;
+            margin: 30px auto 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 100%;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navigate-items {
+            font-weight: bold;
+            font-size: clamp(14px, 3vw, 18px);
+            padding: 15px 10px;
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.5s;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .navigate-items:last-child {
+            border-right: none;
+        }
+
+        .navigate-items.active {
+            color: #333;
+        }
+
+        .background-active {
+            background-color: #f7f7f7;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 0;
+            transition: 0.5s ease-in-out;
+            width: 20%;
+        }
+
+        .ContentTAB {
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: black;
+            border-radius: 0 0 10px 10px;
+            min-height: 450px;
+            text-align: start;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conTAB {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            color: #333;
+            height: auto;
+            text-align: justify;
+        }
+
+        .conTAB.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        .conTAB h1 {
+            text-align: center;
+            background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: clamp(24px, 5vw, 32px);
+            margin-bottom: 20px;
+            font-weight: bolder;
+            padding: 0 10px;
+        }
+
+        .conTAB h3 {
+            font-size: clamp(18px, 4vw, 22px);
+            margin: 15px 0 10px;
+            color: #444;
+        }
+
+        .conTAB p {
+            font-size: clamp(16px, 3vw, 18px);
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .conTAB ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .conTAB li {
+            font-size: clamp(16px, 3vw, 18px);
+            padding: 8px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            color: #555;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .conTAB li::before {
+            content: "✓";
+            color: rgba(252, 70, 107, 1);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+
+        .conTAB li b {
+            color: #333;
+        }
+
+        .book-now,
+        .view-more {
+            background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+            color: white;
+            font-size: clamp(16px, 3vw, 18px);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .book-now:hover,
+        .view-more:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .weather-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .attraction-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .attraction-cards {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .attraction-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .ContentTAB {
+                padding: 15px;
+            }
+
+            .navigate-items {
+                font-size: 14px;
+                padding: 12px 8px;
+                min-width: 80px;
+            }
+        }
+
+        .attraction-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .attraction-card img {
+            padding: 10px;
+            max-height: 150px;
+            width: 100%;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-content p {
+            font-size: 14px !important;
+            margin-bottom: 10px !important;
+        }
+
+        /* Mobile navigation adjustments */
+        @media (max-width: 600px) {
+            .navigate-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+            }
+
+            .navigate-items {
+                scroll-snap-align: start;
+                white-space: nowrap;
+                flex: 0 0 auto;
+            }
+        }
+
+        .card {
+            height: 220px;
+            width: 90%;
+            max-width: 800px;
+            background: linear-gradient(300deg,
+                    rgba(251, 196, 63, 1) 0%,
+                    rgba(252, 102, 85, 1) 31%,
+                    rgba(252, 70, 107, 1) 100%);
+            color: #fff;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 30px;
+        }
+
+        .weather {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .weather-icon {
+            width: 120px;
+            height: 120px;
+        }
+
+        .weather-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .weather h1 {
+            font-size: 50px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 5px;
+            -webkit-text-fill-color: white;
+        }
+
+        .weather h2 {
+            font-size: 30px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 20px;
+            -webkit-text-fill-color: white;
+        }
+
+        .weather-below {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 40px;
+        }
+
+        .humid,
+        .wid {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .humid img,
+        .wid img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .humid div,
+        .wid div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .humidity,
+        .wind {
+            font-size: 40px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 2px;
+        }
+
+        .humid p:last-child,
+        .wid p:last-child {
+            font-size: 25px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .error {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                height: auto;
+                padding: 20px;
+            }
+
+            .weather {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .weather-info {
+                align-items: center;
+            }
+
+            .weather h1 {
+                font-size: 40px;
+            }
+
+            .weather h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .weather-below {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabChoose">
+            <div class="choosemenu">
+                <div class="SliderTAB">
+                    <ul class="navigate-tabs">
+                        <li class="navigate-items active">Explore</li>
+                        <li class="navigate-items">Commute</li>
+                        <li class="navigate-items">Cuisines</li>
+                        <li class="navigate-items">Stays</li>
+                        <li class="navigate-items">Weather</li>
+                        <div class="background-active"></div>
+                    </ul>
+                    <div class="ContentTAB">
+                        <div class="conTAB active">
+                            <h1>About Coimbatore</h1>
+                            <p>
+                                Coimbatore, often called the <b>"Manchester of South India"</b>, is a vibrant city known
+                                for its rich culture, thriving textile industry, and picturesque landscapes. Nestled in
+                                the foothills of the
+                                <b>Western Ghats</b>, it offers a perfect blend of modernity and tradition.
+                            </p>
+                            <h3>Why Visit Coimbatore?</h3>
+                            <ul>
+                                <li><b>Scenic Beauty:</b> Surrounded by lush green hills, waterfalls, and serene
+                                    temples.</li>
+                                <li><b>Spiritual Hub:</b> Home to the famous <b>Isha Yoga Center</b> and ancient
+                                    temples like
+                                    <b>Marudhamalai </b> and <b>Perur Pateeswarar Temple</b>.
+                                </li>
+                                <li><b>Food Delights:</b> Enjoy authentic <b>South Indian cuisine</b>, especially
+                                    Coimbatore's famous
+                                    <b>Kongu Nadu </b> dishes.
+                                </li>
+                                <li><b>Shopping Paradise:</b> Explore local markets for <b>textiles, silk
+                                        sarees,</b> and
+                                    <b>handicrafts</b>.
+                                </li>
+                                <li><b>Gateway to Hill Stations:</b> A major transit point to <b>Ooty, Coonoor,</b>
+                                    and
+                                    <b>Valparai</b>.
+                                </li>
+                            </ul>
+
+                            <div class="attraction-cards">
+                                <div class="attraction-card">
+                                    
+                                    <img src="Isha-Yoga-Centre.jpg" alt="">
+                                    <div class="card-content">
+                                        <h4>Isha Yoga Center</h4>
+                                        <p>Home to the 112-ft tall Adiyogi Shiva statue and a spiritual retreat center
+                                            founded by Sadhguru.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                    <img src="siruvani-waterfalls.jpg" alt="">
+                                    <div class="card-content">
+                                        <h4>Siruvani Waterfalls</h4>
+                                        <p>Known for having the tastiest water in the world and scenic surroundings.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                    <img src="shopstop.jpg" alt="">
+                                    <div class="card-content">
+                                        <h4>Brookefields Mall</h4>
+                                        <p>Brookefields Mall is a vibrant shopping, dining, and entertainment hub in the heart of Coimbatore.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conTAB">
+                            <h1>Commute in Coimbatore</h1>
+                            <p>
+                                Coimbatore offers a hassle-free travel experience with a variety of transport options.
+                                Whether you're commuting within the city or planning an intercity trip, you can find a
+                                suitable
+                                mode of transport to meet your needs.
+                            </p>
+                            <p>
+                                Available transport options:
+                            </p>
+                            <ul>
+                                <li><b>Mini</b> – Ideal for 2-4 passengers (Affordable & Compact)</li>
+                                <li><b>Sedan</b> – Ideal for 4-7 passengers (Spacious & Comfortable) </li>
+                                <li><b>Tempo Van</b> – Ideal for 6-16 passengers (Group Travel)</li>
+                                <li><b>Bus</b> – Ideal for 10-40 passengers (For Large Groups) </li>
+                            </ul>
+                            <a href="vehiclebooking.html"><button class="book-now">Book Now</button></a>
+
+                            <div class="attraction-cards">
+                                <div class="attraction-card">
+                                    <div class="card-content">
+                                        <h4>Airport Transfer</h4>
+                                        <p>Convenient rides from Coimbatore International Airport to your destination.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                    <div class="card-content">
+                                        <h4>Hill Station Tours</h4>
+                                        <p>Comfortable transportation to Ooty, Coonoor, and other nearby hill stations.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                    <div class="card-content">
+                                        <h4>City Tours</h4>
+                                        <p>Guided city tours covering all major attractions in and around Coimbatore.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conTAB">
+                            <h1>Cuisine of Coimbatore</h1>
+                            <p>
+                                Coimbatore is known for its rich <b>Kongu Nadu cuisine</b>, which features a unique
+                                blend of flavors, aromatic spices, and traditional recipes. The city's culinary
+                                landscape offers
+                                a delightful experience for food enthusiasts.
+                            </p>
+                            <ul>
+                                <li><b>Kari Dosa:</b> A special layered dosa with minced meat.</li>
+                                <li><b>Kambu Koozh:</b> A refreshing pearl millet porridge, perfect for summer.
+                                </li>
+                                <li><b>Pallipalayam Chicken:</b> A spicy, rustic chicken dish made with minimal
+                                    ingredients.</li>
+                                <li><b>Arisi Paruppu Sadam:</b> A nutritious and flavorful one-pot meal of rice and
+                                    lentils.</li>
+                                <li><b>Kai Murukku:</b> A crispy, hand-twisted snack popular during festivals.</li>
+                            </ul>
+
+                            <a href="#"><button class="view-more">Discover Restaurants</button></a>
+
+                            <div class="attraction-cards">
+                                <div class="attraction-card">
+                                   
+                                    <div class="card-content">
+                                        <h4>Annapoorna</h4>
+                                        <p>Famous for authentic South Indian vegetarian dishes and traditional filter
+                                            coffee.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                    
+                                    <div class="card-content">
+                                        <h4>Haribhavanam</h4>
+                                        <p>Known for its delicious Kongu Nadu special dishes and homely atmosphere.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                
+                                    <div class="card-content">
+                                        <h4>Junior Kuppanna</h4>
+                                        <p>Popular for non-vegetarian Kongu cuisine, especially their signature Nattu
+                                            Kozhi Kulambu.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conTAB">
+                            <h1>Stays in Coimbatore</h1>
+                            <p>
+                                Whether you're looking for a luxurious hotel, a cozy homestay, or a budget-friendly
+                                lodge, Coimbatore offers a variety of accommodations to suit every traveler's needs and
+                                preferences.
+                            </p>
+                            <ul>
+                                <li><b>Luxury Hotels:</b> Experience comfort at star-rated hotels with premium
+                                    amenities.</li>
+                                <li><b>Budget Stays:</b> Affordable lodges and hostels for backpackers and solo
+                                    travelers.</li>
+                                <li><b>Homestays:</b> Enjoy a home-like stay with local hospitality.</li>
+                                <li><b>Resorts:</b> Stay amidst nature with relaxing and scenic surroundings.</li>
+                            </ul>
+                            
+
+                            <div class="attraction-cards">
+                                <div class="attraction-card">
+                
+                                    <div class="card-content">
+                                        <h4>Vivanta Coimbatore</h4>
+                                        <p>Luxury 5-star accommodation with modern amenities and excellent service.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                                
+                                    <div class="card-content">
+                                        <h4>Zone by The Park</h4>
+                                        <p>Contemporary hotel with stylish rooms and a vibrant atmosphere.</p>
+                                    </div>
+                                </div>
+                                <div class="attraction-card">
+                            
+                                    <div class="card-content">
+                                        <h4>Ganga Residency</h4>
+                                        <p>Budget-friendly accommodation with clean rooms and good facilities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="conTAB">
+                            <h1>Weather in Coimbatore</h1>
+                            <p>
+                                Coimbatore enjoys a pleasant climate throughout the year due to its proximity to the
+                                Western Ghats. The city experiences moderate temperatures, making it comfortable for
+                                travelers
+                                to visit at any time of the year.
+                            </p>
+
+                            <div class="weather-container">
+                                <div class="card">
+                                    <div class="weather">
+                                        <img src="clouds.png" class="weather-icon">
+                                        <div class="weather-info">
+                                           
+                                            <div class="weather-below">
+                                                <div>
+                                                    <h1 class="temp">0°C</h1>
+                                                    <h2 class="city">Coimbatore</h2>
+                                                </div>
+                                                <div class="humid">
+                                                    <img src="humidity.png">
+                                                    <div>
+                                                        <p class="humidity" style="color: white; font-size: 25px;">50%</p>
+                                                        <p>Humidity</p>
+                                                    </div>
+                                                </div>
+                                                <div class="wid">
+                                                    <img src="wind.png">
+                                                    <div>
+                                                        <p class="wind" style="color: white; font-size: 25px;">50 km/h</p>
+                                                        <p>Wind speed</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="error" style="display: none;">Invalid city name</div>
+                                </div>
+                            </div>
+
+                            <ul>
+                                <li><b>Best Time to Visit:</b> October to March, when the weather is cool and
+                                    pleasant.</li>
+                                <li><b>Summer (March-June):</b> Temperatures range from 26°C to 38°C.</li>
+                                <li><b>Monsoon (July-September):</b> Moderate rainfall with comfortable
+                                    temperatures.</li>
+                                <li><b>Winter (October-February):</b> Mild with temperatures between 18°C and
+                                    30°C.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.navigate-items');
+            const contentTabs = document.querySelectorAll('.conTAB');
+            const backgroundActive = document.querySelector('.background-active');
+
+            // Set initial background width and position
+            backgroundActive.style.width = tabs[0].offsetWidth + 'px';
+            backgroundActive.style.left = tabs[0].offsetLeft + 'px';
+
+            function updateTabIndicator() {
+                const activeTab = document.querySelector('.navigate-items.active');
+                if (activeTab) {
+                    backgroundActive.style.width = activeTab.offsetWidth + 'px';
+                    backgroundActive.style.left = activeTab.offsetLeft + 'px';
+                }
+            }
+
+            // Update on window resize
+            window.addEventListener('resize', updateTabIndicator);
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contentTabs.forEach(c => c.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    contentTabs[index].classList.add('active');
+
+                    // Move background
+                    backgroundActive.style.width = tab.offsetWidth + 'px';
+                    backgroundActive.style.left = tab.offsetLeft + 'px';
+
+                    // If weather tab is clicked, check weather
+                    if (index === 4) {
+                        checkWeather();
+                    }
+                });
+            });
+
+            // If weather tab is initially active, check weather
+            if (tabs[4].classList.contains('active')) {
+                checkWeather();
+            }
+        });
+
+        const apiKey = "c69536166ae44e4d7b6ad42f4bf8492a";
+        const city = "coimbatore";
+        const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const weatherIcon = document.querySelector(".weather-icon");
+
+        async function checkWeather() {
+            try {
+                const response = await fetch(apiURL);
+
+                if (response.status == 404) {
+                    document.querySelector(".error").style.display = "block";
+                    document.querySelector(".weather").style.display = "none";
+                } else {
+                    var data = await response.json();
+
+                    document.querySelector(".city").innerHTML = data.name;
+                    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                    document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
+                    if (data.weather[0].main == "Clouds") {
+                        weatherIcon.src = "clouds.png";
+                    } else if (data.weather[0].main == "Clear") {
+                        weatherIcon.src = "clear.png";
+                    } else if (data.weather[0].main == "Rain") {
+                        weatherIcon.src = "rain.png";
+                    } else if (data.weather[0].main == "Drizzle") {
+                        weatherIcon.src = "drizzle.png";
+                    } else if (data.weather[0].main == "Mist") {
+                        weatherIcon.src = "mist.png";
+                    }
+
+                    document.querySelector(".weather").style.display = "flex";
+                    document.querySelector(".error").style.display = "none";
+                }
+            } catch (error) {
+                console.error("Weather API error:", error);
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

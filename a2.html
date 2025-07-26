@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paragliding at Kovaikutralam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            max-height: 140px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+        .expanded {
+            max-height: 1000px;
+        }
+
+        .read-more-btn {
+            color: blue;
+            cursor: pointer;
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        img {
+            width: 100%;
+            /* Makes the image responsive */
+            max-width: 900px;
+            /* Maximum width of the image */
+            height: auto;
+            /* Keeps the height proportional */
+            object-fit: cover;
+            /* Ensures the image maintains aspect ratio */
+            border-radius: 8px;
+            /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Adds shadow for depth */
+            margin-top: 20px;
+            /* Adds space between the text and the image */
+            margin-left: auto;
+            /* Centers the image horizontally */
+            margin-right: auto;
+            /* Centers the image horizontally */
+            display: block;
+            /* Ensures the image is on its own line */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Adds smooth transition for hover effect */
+        }
+
+        /* Hover effect for the image */
+        img:hover {
+            transform: scale(1.05);
+            /* Slight zoom on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            /* Stronger shadow on hover */
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1)100%);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button i {
+            font-size: 18px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="add5.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="container">
+        <h2>🪂 Paragliding at Kovaikutralam</h2>
+        <p class="content" id="text">
+            📍 Location: Foothills of Coimbatore, offering stunning aerial views of the Western Ghats. <br>
+            🪂 A Dream Flight – Perfect for adventure lovers and thrill-seekers. <br>
+            <br><br>
+            🌟 Why Try Paragliding Here? <br>
+            ✅ Perfect Wind Conditions – Smooth, steady winds ideal for gliding. <br>
+            ✅ Breathtaking Views – Fly over green valleys, waterfalls, and forests. <br>
+            ✅ Beginner-Friendly – Tandem flights available with expert pilots. <br>
+            ✅ Solo Flights for Experts – Take off and soar high if you're experienced. <br>
+            ✅ Training Camps – Learn the art of paragliding from certified instructors. <br>
+            <br>
+            ⚠️ Things to Remember <br>
+            🔹 Safety First – Listen to instructors and wear proper gear. <br>
+            🔹 Best Time to Visit – October to March for stable wind conditions. <br>
+            🔹 Advance Booking – Required for tandem flights and training programs. <br>
+            <br><br>
+            🪂 Soar high and experience the ultimate thrill at Kovaikutralam! <br>
+        </p>
+
+        <span class="read-more-btn" onclick="toggleText()" id="toggle-btn">Read More</span>
+    </div>
+    <img src="image12_result-1675087332278.webp" alt="">
+
+    <script>
+        function toggleText() {
+            var content = document.getElementById("text");
+            var btn = document.getElementById("toggle-btn");
+            if (content.classList.contains("expanded")) {
+                content.classList.remove("expanded");
+                btn.innerText = "Read More";
+            } else {
+                content.classList.add("expanded");
+                btn.innerText = "Read Less";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

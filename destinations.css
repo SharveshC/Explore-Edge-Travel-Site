@@ -1,0 +1,8 @@
+.details{
+    box-shadow: 5px 5px 10px #3b3737 !important;
+    height: 400px !important;
+    width: 350px !important;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}

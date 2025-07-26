@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Inspiration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #343a40;
+        }
+
+        .element-2 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(11, 1fr);
+            gap: 15px;
+        }
+
+        .heading-packages {
+            grid-column: span 2 / span 2;
+            grid-row: span 2 / span 2;
+            grid-column-start: 1;
+            grid-row-start: 1;
+            background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(252, 102, 85, 0.3);
+        }
+
+        .heading-packages:hover {
+            transform: translateY(-5x);
+        }
+
+        .heading-packages h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            z-index: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .location-label {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            z-index: 2;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(90deg,
+                    rgba(252, 135, 80, 1) 0%,
+                    rgba(252, 70, 107, 1) 100%);
+        }
+
+        .div1-package {
+            grid-row: span 5 / span 5;
+            grid-column-start: 1;
+            grid-row-start: 4;
+        }
+
+        .div2-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 2;
+            grid-row-start: 3;
+        }
+
+        .div3-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 2;
+            grid-row-start: 7;
+        }
+
+        .div4-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 3;
+            grid-row-start: 2;
+        }
+
+        .div5-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 3;
+            grid-row-start: 6;
+        }
+
+        .div6-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 4;
+            grid-row-start: 3;
+        }
+
+        .div7-package {
+            grid-row: span 4 / span 4;
+            grid-column-start: 4;
+            grid-row-start: 7;
+        }
+
+        /* Explore More Button Styles */
+        .explore-more-container {
+            grid-column: 1 / -1;
+            grid-row: 12;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .explore-more-btn {
+            margin-top: -50px;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: white;
+            background: linear-gradient(90deg, rgba(251, 196, 63, 1) 0%, rgba(252, 102, 85, 1) 51%, rgba(252, 70, 107, 1) 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(252, 102, 85, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .explore-more-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(252, 102, 85, 0.4);
+        }
+
+        .explore-more-btn:active {
+            transform: translateY(0);
+        }
+
+        .explore-more-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .explore-more-btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        @media (max-width: 1024px) {
+            .element-2 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .heading-packages {
+                grid-column: 1 / span 3;
+                grid-row: 1 / span 2;
+            }
+
+            .heading-packages h2 {
+                font-size: 2rem;
+            }
+
+            .div1-package {
+                grid-column: 1;
+                grid-row: 3 / span 4;
+            }
+
+            .div2-package {
+                grid-column: 2;
+                grid-row: 3 / span 3;
+            }
+
+            .div3-package {
+                grid-column: 2;
+                grid-row: 6 / span 3;
+            }
+
+            .div4-package {
+                grid-column: 3;
+                grid-row: 3 / span 3;
+            }
+
+            .div5-package {
+                grid-column: 3;
+                grid-row: 6 / span 3;
+            }
+
+            .div6-package {
+                grid-column: 1;
+                grid-row: 9 / span 3;
+            }
+
+            .div7-package {
+                grid-column: 2 / span 2;
+                grid-row: 9 / span 3;
+            }
+
+            .explore-more-btn {
+                padding: 12px 35px;
+                margin-top: 80px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .element-2 {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(10, 1fr);
+                gap: 10px;
+                height: 1000px;
+            }
+
+            .heading-packages {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .heading-packages h2 {
+                font-size: 1.8rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .div1-package {
+                grid-column: 1;
+                grid-row: 3 / span 2;
+            }
+
+            .div2-package {
+                grid-column: 2;
+                grid-row: 4 / span 2;
+            }
+
+            .div3-package {
+                grid-column: 1;
+                grid-row: 5 / span 2;
+            }
+
+            .div4-package {
+                grid-column: 2;
+                grid-row: 6 / span 2;
+            }
+
+            .div5-package {
+                grid-column: 1;
+                grid-row: 7 / span 2;
+            }
+
+            .div6-package {
+                grid-column: 2;
+                grid-row: 8 / span 2;
+            }
+
+            .div7-package {
+                grid-column: 1;
+                grid-row: 9 / span 2;
+            }
+
+            .explore-more-btn {
+                padding: 10px 30px;
+                font-size: 1rem;
+                margin-top: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .element-2 {
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(200px, auto);
+            }
+
+            .heading-packages {
+                max-height: 200px;
+                grid-column: 1;
+                grid-row: 1 / span 1;
+            }
+
+            .heading-packages h2 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            body {
+                padding: 10px;
+            }
+
+            .div1-package,
+            .div2-package,
+            .div3-package,
+            .div4-package,
+            .div5-package,
+            .div6-package,
+            .div7-package {
+                grid-column: 1;
+                grid-row: auto;
+                height: 250px;
+            }
+
+            .explore-more-btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="element-2">
+        <div class="heading-packages">
+            <h2>Inspiration for Your Next Trip</h2>
+            <p class="intro-text">Discover handpicked tour packages for an unforgettable adventure. Explore breathtaking
+                destinations around the world.</p>
+        </div>
+
+        <div class="gallery-item div1-package">
+            <img src="Top-20-Places-to-Visit-in-Ooty-in-2023-That-You-Never-Miss-in-Lifetime-scaled.jpg" alt="Ooty">
+            <a href="ooty p.html" target="_top">
+                <div class="location-label">Ooty Excursion</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div2-package">
+            <img src="valparai.jpg" alt="Valparai Getaway">
+            <a href="Valparai.html" target="_top">
+                <div class="location-label">Valparai Getaway</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div3-package">
+            <img src="Isha-Yoga-Centre.jpg" alt="Isha Yoga Center">
+            <a href="isha.html" target="_top">
+                <div class="location-label">Isha Yoga Center</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div4-package">
+            <img src="pollachitop.jpg" alt="Pollachi & Topslip">
+            <a href="pollachi.html" target="_top">
+                <div class="location-label">Pollachi & Topslip</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div5-package">
+            <img src="hillstation.jpg" alt="Hill Station & Tea Plantation Tour">
+            <a href="wildlife.html" target="_top">
+                <div class="location-label">Hill Station & Tea Plantation Tour</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div6-package">
+            <img src="Kottai-Easwaran-Temple-Coimbatore.jpg" alt="Heritage & Cultural Trail">
+            <a href="heritage cultural.html" target="_top">
+                <div class="location-label">Heritage & Cultural Trail</div>
+            </a>
+        </div>
+
+        <div class="gallery-item div7-package">
+            <img src="Waterfallscenic.jpg" alt="Waterfalls and Scenic Nature tour">
+            <a href="waterfall.html" target="_top">
+                <div class="location-label">Waterfalls and Scenic Nature</div>
+            </a>
+        </div>
+
+
+        
+        <div class="explore-more-container">
+            <a href="packagesoption.html" target="_top" class="explore-more-btn">Explore More</a>
+        </div>
+    </div>
+
+    <script>
+        // If AOS is available
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                once: true,
+                duration: 1000
+            });
+        }
+    </script>
+</body>
+
+</html>
