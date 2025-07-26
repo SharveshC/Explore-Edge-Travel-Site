@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="pack.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.pack-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.package-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.package-item:hover {
+    transform: translateY(-5px);
+}
+
+.package-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.package-item h3 {
+    margin: 15px 0;
+    font-size: 1.2em;
+}
+
+.package-item a {
+    text-decoration: none;
+    color: #ff5733;  /* Orange color */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.package-item a:hover {
+    color: #d84315; /* Darker orange on hover */
+}
+
+@media (max-width: 768px) {
+    .pack-content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+
+    <center><h2>Popular showstops in Coimbatore</h2></center>
+    <div class="pack-content">
+
+        <div class="package-item">
+            <img src="DALL·E 2025-03-15 22.48.14 - A modern shopping mall in Coimbatore, India, with bright lights, luxury stores, a busy food court, and a central atrium filled with shoppers. The mall.webp" alt="Brookefields Mall">
+            <h3><a href="sh1.html">Brookefields Mall</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="DALL·E 2025-03-15 22.52.44 - A stylish shopping mall in Coimbatore, India, featuring branded fashion stores, a cinema, and a gaming zone. The mall is well-lit with modern interior.webp" alt="Fun Republic Mall">
+            <h3><a href="sh2.html">Fun Republic Mall</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="DALL·E 2025-03-15 23.01.18 - A crowded electronics hub in Coimbatore, India, filled with mobile shops, gadget stores, and repair centers. The complex is packed with customers expl.webp" alt="Lakshmi Complex">
+            <h3><a href="sh3.html">Lakshmi Complex</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="DALL·E 2025-03-15 23.03.29 - A grand saree showroom in Coimbatore, India, featuring colorful silk sarees, bridal collections, and traditional motifs. The store is well-lit with ne.webp" alt="Shree Devi Textile">
+            <h3><a href="sh4.html">Shree Devi Textile</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="DALL·E 2025-03-15 23.06.20 - A bustling textile market street in Coimbatore, India, filled with wholesale textile shops, colorful fabric displays, and busy shoppers. The street is.webp" alt="Oppanakara Street">
+            <h3><a href="sh5.html">Oppanakara Street</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="7327c2788f3bb28ebdb130220b147744.jpg" alt="Prozone Mall">
+            <h3><a href="sh6.html">Prozone Mall</a></h3>
+        </div>
+    </div>
+</body>
+
+</html>

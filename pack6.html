@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+       
+       body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+}
+
+/* Grid Layout */
+.pack-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Card Styling */
+.package-item {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.package-item:hover {
+    transform: scale(1.05);
+}
+
+/* Image Styling */
+.package-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Remove Extra Space Below Images */
+.package-item h3 {
+    text-align: center;
+    padding: 10px 0;  /* Reduced padding */
+    margin: 0; /* Removed default margin */
+}
+
+/* Orange Links */
+.package-item a {
+    text-decoration: none;
+    color: #ff5733;  /* Orange color */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.package-item a:hover {
+    color: #d84315;  /* Darker orange on hover */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .pack-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .pack-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+        
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <h2>Natural Attraction</h2>
+    </center>
+    <br>
+    <div class="pack-content">
+        <div class="package-item">
+            <img src="vaidehi-waterfall.jpg" alt="Vaidehi Falls">
+            <h3><a href="n1.html">Vaidehi Falls</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="camping-1656268518_4ccc9ad39ec499cb9100.webp" alt="Perumal Peak">
+            <h3><a href="n2.html">Perumal Peak</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="1680409220_tripoto.jpg.webp" alt="Topslip & Parambikulam">
+            <h3><a href="n3.html">Topslip & Parambikulam Wildlife Sanctuary</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="photo.webp" alt="Ukkadam Periyakulam Lake">
+            <h3><a href="n4.html">Ukkadam Periyakulam Lake</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="thoonakkadavu-12.jpg" alt="Thoonakkadavu Dam">
+            <h3><a href="n5.html">Thoonakkadavu Dam & Parambikulam Reservoir</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="IGWS&NPUpper_AliyarMonkey_falls.jpg" alt="Monkey Falls">
+            <h3><a href="n6.html">Monkey Falls</a></h3>
+        </div>
+    </div>
+</body>
+</html>

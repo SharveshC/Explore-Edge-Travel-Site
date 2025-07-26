@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coimbatore Tour Packages</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Banner Styles */
+        .tour-banner {
+            position: relative;
+            height: 70vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tour-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+            z-index: 1;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 20px;
+            color: white;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding-top: 100px;
+        }
+
+        .banner-text h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .banner-text p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .explore-now-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(252, 70, 107, 0.4);
+        }
+
+        .explore-now-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Package List Styles */
+        .package-list {
+            padding: 60px 0;
+        }
+
+        .package-list h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+            position: relative;
+        }
+
+        .package-list h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        }
+
+        .pack-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: 0.3s ease-in-out;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .package-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .package-details {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .package-details li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .package-details li i {
+            margin-right: 10px;
+            color: rgba(252, 70, 107, 1);
+        }
+
+        .explore-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .card-footer span:first-child {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: rgba(252, 70, 107, 1);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+
+        .rating i {
+            color: #FFD700;
+            margin-right: 5px;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 992px) {
+            .banner-text h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .banner-text h2 {
+                font-size: 2rem;
+            }
+
+            .banner-text p {
+                font-size: 1rem;
+            }
+
+            .package-list h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .tour-banner {
+                height: 60vh;
+            }
+
+            .banner-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .package-list {
+                padding: 50px 0;
+            }
+
+            .package-list h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+
+            .pack-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <iframe src="navbar.html"  style="height: 80px; width: 100%;position: sticky;top: 0;z-index: 1000;"></iframe>
+
+    <section class="tour-banner">
+        <img src="Coimbatore-main1.jpg" alt="Coimbatore Tour Attractions" class="banner-img">
+        <div class="banner-content">
+            <div class="banner-text">
+                <h2>Explore Coimbatore Tour Packages</h2>
+                <p>Discover the charm of Coimbatore with our specially curated tour packages. Experience nature, culture, and adventure in the Manchester of South India.</p>
+                <a href="#package" class="explore-now-btn">View Packages</a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="package-list" id="package">
+        <h2>Best Coimbatore Travel Packages</h2>
+        <div class="pack-content">
+            <div class="package-card">
+                <div class="discount-badge">20% off</div>
+                <img src="105141685.cms" alt="Ooty Excursion">
+                <div class="card-body">
+                    <h3>Ooty Excursion</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 3 Days / 2 Nights</li>
+                        <li><i class='bx bx-time'></i> Best time: Apr - Sep</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 30 Apr 2025</li>
+                    </ul>
+                    <a href="ooty p.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹6,500</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">18% off</div>
+                <img src="val.jpeg" alt="Valparai Getaway">
+                <div class="card-body">
+                    <h3>Valparai Getaway</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 2 Days / 1 Night</li>
+                        <li><i class='bx bx-time'></i> Best time: Jun - Dec</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 15 May 2025</li>
+                    </ul>
+                    <a href="Valparai.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹4,200</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">10% off</div>
+                <img src="center isha.avif" alt="Isha Yoga Center Retreat">
+                <div class="card-body">
+                    <h3>Isha Yoga Center Retreat</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 1 Day</li>
+                        <li><i class='bx bx-time'></i> Open All Year</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 10 May 2025</li>
+                    </ul>
+                    <a href="isha.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹2,000</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">15% off</div>
+                <img src="pollachi.jpg" alt="Pollachi & Topslip">
+                <div class="card-body">
+                    <h3>Pollachi & Topslip</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 2 Days / 1 Night</li>
+                        <li><i class='bx bx-time'></i> Mar - Jul</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 5 May 2025</li>
+                    </ul>
+                    <a href="pollachi.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹5,500</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">25% off</div>
+                <img src="wildlife.jpeg" alt="Wild Escape & Adventure Tour">
+                <div class="card-body">
+                    <h3>Wild Escape & Adventure</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 6 Days / 5 Nights</li>
+                        <li><i class='bx bx-time'></i> Nov - Mar</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 30 Sep 2025</li>
+                    </ul>
+                    <a href="wildlife.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹6,599</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.7</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">22% off</div>
+                <img src="waterfalls.jpg" alt="Waterfalls & Scenic Nature Tour">
+                <div class="card-body">
+                    <h3>Scenic Nature & Falls</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 7 Days / 6 Nights</li>
+                        <li><i class='bx bx-time'></i> Jun - Nov</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 15 Aug 2025</li>
+                    </ul>
+                    <a href="waterfall.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹7,000</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.9</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">17% off</div>
+                <img src="heritage culture.jpeg" alt="Heritage & Cultural Trail">
+                <div class="card-body">
+                    <h3>Heritage & Culture Trail</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 6 Days / 5 Nights</li>
+                        <li><i class='bx bx-time'></i> Jan - Mar</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 28 Feb 2025</li>
+                    </ul>
+                    <a href="heritage cultural.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹7,000</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="package-card">
+                <div class="discount-badge">30% off</div>
+                <img src="theme park.jpg" alt="Family Fun & Theme Park Tour">
+                <div class="card-body">
+                    <h3>Theme Park Family Fun</h3>
+                    <ul class="package-details">
+                        <li><i class='bx bx-calendar'></i> 5 Days / 4 Nights</li>
+                        <li><i class='bx bx-time'></i> Apr - Oct</li>
+                        <li><i class='bx bx-bookmark'></i> Book by: 20 Jul 2025</li>
+                    </ul>
+                    <a href="theme park.html" class="explore-btn">Explore</a>
+                    <div class="card-footer">
+                        <span>From ₹10,500</span>
+                        <span class="rating"><i class='bx bxs-star'></i> 4.6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <iframe src="element6.html"  style="height: 77vh; width: 100%; bottom: 0;margin-bottom: -200px;"></iframe>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({   
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

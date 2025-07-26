@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.package-list h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+    font-size: 28px;
+    color: #333;
+}
+
+.pack-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.package-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.package-item:hover {
+    transform: scale(1.05);
+}
+
+.package-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.package-item h3 {
+    margin: 15px 0;
+    font-size: 20px;
+}
+
+.package-item a {
+    text-decoration: none;
+    color: #ff5733;  /* Orange color */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.package-item a:hover {
+    color: #d84315;  /* Darker orange on hover */
+}
+
+@media screen and (max-width: 768px) {
+    .pack-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .pack-content {
+        padding: 10px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <section class="package-list">
+        <h2>Nearby Gateways</h2>
+        <div class="pack-content">
+            <div class="package-item">
+                <img src="DALL·E 2025-03-15 23.10.46 - A stunning view of Isha Yoga Center in Coimbatore, India, featuring the massive 112-feet Adiyogi Shiva statue surrounded by lush greenery and the sere.webp" alt="Isha Yoga Center">
+                <h3><a href="g1.html">Isha Yoga Center</a></h3>
+            </div>
+            <div class="package-item">
+                <img src="anaikatti-1680098054_15090b9f268cb558c96c.webp" alt="Anaikatti">
+                <h3><a href="g2.html">Anaikatti</a></h3>
+            </div>
+            <div class="package-item">
+                <img src="Top-20-Places-to-Visit-in-Ooty-in-2023-That-You-Never-Miss-in-Lifetime-scaled.jpg" alt="Ooty">
+                <h3><a href="g3.html">Ooty (Udhagamandalam)</a></h3>
+            </div>
+            <div class="package-item">
+                <img src="athirappily-falls1-2.jpg" alt="Valparai">
+                <h3><a href="g4.html">Valparai</a></h3>
+            </div>
+            <div class="package-item">
+                <img src="Lucky_Ariel_vttsit.avif" alt="Black Thunder">
+                <h3><a href="g5.html">Black Thunder</a></h3>
+            </div>
+            <div class="package-item">
+                <img src="HolidayIQ.jpg" alt="Coonoor">
+                <h3><a href="g6.html">Coonoor</a></h3>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

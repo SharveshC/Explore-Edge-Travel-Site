@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage and Cultural Tour</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+
+        .package-body {
+            background: linear-gradient(90deg,
+                rgba(252, 135, 80, 1) 0%,
+                rgba(252, 70, 107, 1) 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Banner Styling */
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .banner-container:hover .banner-image {
+            transform: scale(1.05);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+            color: #fff;
+        }
+
+        .banner-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            animation: fadeInUp 1s ease;
+        }
+
+        .banner-description {
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.2s ease;
+            margin-bottom: 20px;
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #fc8750 0%, #fc4e6b 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(252, 70, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .booking-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(252, 70, 107, 0.2);
+        }
+
+        /* Content Container */
+        .content-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Package Info Section */
+        .package-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(252, 135, 80, 0.3);
+        }
+
+        .package-info h2 {
+            color: #fc4e6b;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .package-info ul {
+            list-style-type: none;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .package-info ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .package-info ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #fc8750;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .package-info h3 {
+            color: #fc4e6b;
+            font-size: 1.5rem;
+            margin-top: 15px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .plan-section {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .package-plan h2 {
+            color: #fc4e6b;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .package-plan h3 {
+            background: linear-gradient(90deg, #fc8750 0%, #fc4e6b 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin: 20px 0 15px;
+            font-size: 1.3rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(252, 70, 107, 0.2);
+        }
+
+        .package-plan ul {
+            list-style-type: none;
+            margin-left: 15px;
+        }
+
+        .package-plan ul li {
+            position: relative;
+            padding: 12px 0 12px 30px;
+            border-left: 2px dashed #fc8750;
+            margin-left: 10px;
+            font-size: 1.05rem;
+            color: #4a4a4a;
+        }
+
+        .package-plan ul li:before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #fc4e6b;
+            font-size: 1.5rem;
+        }
+
+        .package-plan ul li:last-child {
+            border-left: none;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .gallery img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Booking Button */
+        .booking-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .book-now {
+            display: inline-block;
+            background: linear-gradient(90deg, #fc8750 0%, #fc4e6b 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(252, 70, 107, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .book-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(252, 70, 107, 0.6);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .back-button i {
+            font-size: 18px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(252, 70, 107, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .banner-container {
+                height: 300px;
+            }
+            
+            .banner-title {
+                font-size: 2.5rem;
+            }
+            
+            .banner-description {
+                font-size: 1rem;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .gallery {
+                margin-top: 20px;
+            }
+            
+            .content-container {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .banner-container {
+                height: 250px;
+            }
+            
+            .banner-overlay {
+                padding: 20px;
+            }
+            
+            .banner-title {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-now-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(90deg, rgba(252, 135, 80, 1) 0%, rgba(252, 70, 107, 1)100%);
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .back-button i {
+            font-size: 18px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body class="package-body">
+   
+    <div class="banner-container">
+        <img src="/Destinations/Eachanari_Vinayakar_Temple.jpg" alt="Heritage Sites" class="banner-image">
+        <div class="banner-overlay">
+            <h1 class="banner-title">Heritage & Cultural Trail</h1>
+            <p class="banner-description">Discover the rich cultural heritage and traditions of South India.</p>
+            <div class="booking-button">
+                <a href="booking.html?package=heritage&title=Heritage%20and%20Cultural%20Tour&price=3999&duration=2" class="book-now-btn">Book Now - ₹3,999</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="package-detail">
+        <div class="content-container">
+            <div class="package-info">
+                <h2>Package Highlights:</h2>
+                <ul>
+                    <li>Visit ancient temples and historic sites</li>
+                    <li>Experience traditional art forms and music</li>
+                    <li>Taste authentic local cuisine</li>
+                    <li>Meet local artisans and craftsmen</li>
+                    <li>Expert cultural guides</li>
+                </ul>
+                <h3>Package Price: Starting at Rs.3,999</h3>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="plan-section">
+                    <div class="package-plan">
+                        <h2>Tour Itinerary:</h2>
+                        <h3>Day 1: Temple Heritage</h3>
+                        <ul>
+                            <li>Visit to ancient temples</li>
+                            <li>Traditional lunch</li>
+                            <li>Cultural performances</li>
+                            <li>Evening heritage walk</li>
+                        </ul>
+                        
+                        <h3>Day 2: Arts & Crafts</h3>
+                        <ul>
+                            <li>Local artisan workshops</li>
+                            <li>Traditional art demonstrations</li>
+                            <li>Authentic local meal experience</li>
+                            <li>Souvenir shopping</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="gallery">
+                    <img src="heritage1.jpg" alt="Perur Temple">
+                    <img src="heritage2.jpg" alt="Cultural Performance">
+                    <img src="heritage3.jpg" alt="Traditional Handicrafts">
+                    <img src="heritage culture.jpeg" alt="Marudhamalai">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="packagesoption.html" class="back-button">
+        <i class="bx bx-arrow-back"></i> Back
+    </a>
+</body>
+
+</html>

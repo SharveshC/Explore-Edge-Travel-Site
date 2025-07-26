@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 1.8em;
+        }
+
+        .pack-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .package-item {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .package-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .package-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #ff5722;
+        }
+
+        .package-item h3 {
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .package-item a {
+            text-decoration: none;
+            color: #ff5722;
+            transition: color 0.3s;
+        }
+
+        .package-item a:hover {
+            color: #d84315;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .pack-content {
+                grid-template-columns: repeat(2, 1fr); /* 2 items per row on tablets */
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .pack-content {
+                grid-template-columns: 1fr; /* 1 item per row on small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Adventure Activities</h2>
+    <div class="pack-content">
+        <div class="package-item">
+            <img src="NPL4c-Mountain-Bike-Annapurna-Circuit.jpg" alt="Mountain Biking">
+            <h3><a href="a1.html">Mountain Biking in Anaikatti 🚴‍♂️</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="Yelagiri-Paragliding.png" alt="Paragliding">
+            <h3><a href="a2.html">Paragliding at Kovaikutralam 🪂</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="Rock-Climbing-dhauj.jpeg" alt="Rock Climbing">
+            <h3><a href="a3.html">Rock Climbing at Dhoni Hills 🧗‍♂️</a></h3>
+        </div>
+        
+        <div class="package-item">
+            <img src="caption.jpg" alt="Kayaking">
+            <h3><a href="a4.html">Kayaking at Aliyar Dam 🚣‍♂️</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="dirtmania-kanakapura-road-bangalore-atv-riding-clubs-xjq8mcsm45.avif" alt="ATV Riding">
+            <h3><a href="a5.html">ATV Riding at Kovai Hills 🏍️</a></h3>
+        </div>
+        <div class="package-item">
+            <img src="pexels-aktionman74-17792449.jpg" alt="Off-Roading">
+            <h3><a href="a6.html">Off-Roading at Vedapatti Hills 🏎️</a></h3>
+        </div>
+    </div>
+</body>
+
+</html>
